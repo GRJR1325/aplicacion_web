@@ -1,13 +1,30 @@
-$def with (name)
-
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
+    <title>Lista de Personas</title>
 </head>
 <body>
-    <h1>Hola, $name! desde web.py</h1>
+    <h1>Lista de Personas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            $for persona in data:
+                <tr>
+                    <td>$persona["id_persona"]</td>
+                    <td>$persona["nombre"]</td>
+                    <td>$persona["email"]</td>
+                    <td>$persona["telefono"]</td>
+                </tr>
+        </tbody>
+    </table>
 </body>
 </html>
