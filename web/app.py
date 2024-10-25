@@ -5,27 +5,27 @@ import requests
 API_URL = "https://api-rest-ca5g.onrender.com/personas/"  
 
 # Rutas 
-urls = (
-    '/', 'Index'
-)
+urls = ("/", "Index")
 
+app = web.application(urls, globals())
+render = web.template.render("web/views/")
 
 class Index:
-    def GET(self):
-        
-        response = requests.get(API_URL)
-    
-        if response.status_code == 200:
-            data = response.json()  
-            print("RESPUESTA:",data)
+    try:
+        def GET(self):
             
-        else:
-            data = [] 
+            response = requests.get(API_URL)
+        
+            if response.status_code == 200:
+                data = response.json()  
+                print("RESPUESTA API:",data)
+                
+            else:
+                data = [] 
 
-        return render.index(data)
-
-render = web.template.render('templates/')
-
+            return render.index(data)
+    except Exception as e:
+        print(f"ERROR ENCONTRADO:{e}")
+        
 if __name__ == "__main__":
-    app = web.application(urls, globals())
     app.run()
